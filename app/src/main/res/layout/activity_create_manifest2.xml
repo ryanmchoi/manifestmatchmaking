@@ -83,6 +83,7 @@
         android:textColor="@color/black"
         android:textColorHint="#00E91E63"
         app:backgroundTint="#D3D3D3"
+        app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
