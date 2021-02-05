@@ -10,8 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".ViewManifest"
+            android:label="View Manifest"></activity>
+        <activity
             android:name=".CreateManifest"
-            android:label="Create Manifest"></activity>
+            android:label="Create Manifest" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExistingManifest"
-                  android:label="View Manifests"/>
+        <activity
+            android:name=".ExistingManifest"
+            android:label="View Manifests" />
     </application>
 
 </manifest>
