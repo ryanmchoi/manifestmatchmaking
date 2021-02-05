@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,7 +33,10 @@ public class CreateManifest extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkDataEntered();
+                if(checkDataEntered()) {
+                    Intent viewManifestIntent = new Intent(CreateManifest.this, ExistingManifest.class);
+                    startActivity(viewManifestIntent);
+                }
             }
         });
     }
@@ -42,11 +46,13 @@ public class CreateManifest extends AppCompatActivity {
         return TextUtils.isEmpty(str);
     }
 
-    void checkDataEntered() {
+    boolean checkDataEntered() {
         if (isEmpty(manifestName)) {
             manifestName.setError("Manifest name is required!");
             Toast t = Toast.makeText(this, "You must enter the manifest name to create one!", Toast.LENGTH_SHORT);
             t.show();
+            return false;
         }
+        return true;
     }
 }
