@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".ManifestList" />
         <activity
             android:name=".ViewManifest"
-            android:label="View Manifest"></activity>
+            android:label="View Manifest" />
         <activity
             android:name=".CreateManifest"
             android:label="Create Manifest" />

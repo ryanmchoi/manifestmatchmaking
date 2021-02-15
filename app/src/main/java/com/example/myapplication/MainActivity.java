@@ -17,23 +17,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         createManifestBtn = findViewById(R.id.createManifestBtn);
-         viewManifestBtn = findViewById(R.id.viewManifestBtn);
+        createManifestBtn = findViewById(R.id.createManifestBtn);
+        viewManifestBtn = findViewById(R.id.viewManifestBtn);
 
-         createManifestBtn.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Intent createManifestIntent = new Intent(MainActivity.this, CreateManifest.class);
-                 startActivity(createManifestIntent);
-             }
-         });
+        createManifestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent createManifestIntent = new Intent(MainActivity.this, CreateManifest.class);
+                startActivity(createManifestIntent);
+            }
+        });
 
-         viewManifestBtn.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Intent viewManifestIntent = new Intent(MainActivity.this, ExistingManifest.class);
-                 startActivity(viewManifestIntent);
-             }
-         });
+        viewManifestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewManifestIntent = new Intent(MainActivity.this, ManifestList.class);
+                startActivity(viewManifestIntent);
+            }
+        });
     }
 }

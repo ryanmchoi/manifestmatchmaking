@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -34,7 +35,7 @@ public class CreateManifest extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(checkDataEntered()) {
-                    Intent viewManifestIntent = new Intent(CreateManifest.this, ExistingManifest.class);
+                    Intent viewManifestIntent = new Intent(CreateManifest.this, ManifestList.class);
                     startActivity(viewManifestIntent);
                 }
             }
