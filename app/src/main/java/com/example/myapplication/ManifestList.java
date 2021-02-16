@@ -23,17 +23,17 @@ public class ManifestList extends AppCompatActivity {
         ManifestListFormat customListview = new ManifestListFormat(this, manifest);
         lst.setAdapter(customListview);
 
-        /* intent setup
+
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //String mview = manifest[position].toString();
-                Intent intent = new Intent(ManifestList.this, MainActivity.class);
-                //intent.putExtra("Listviewclickvalue", mview);
+                String mview = manifest[position].toString();
+                Intent intent = new Intent(ManifestList.this, ViewManifest.class);
+                intent.putExtra("Listviewclickvalue", mview);
                 startActivity(intent);
             }
         });
-         */
+
     }
 
 }
