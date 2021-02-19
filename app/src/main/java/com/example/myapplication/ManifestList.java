@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class ManifestList extends AppCompatActivity {
     DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Manifests");
-    
+
     String[] manifest = new String[]{"Manifest A", "Manifest B", "Manifest C", "Manifest D", "Manifest E", "Manifest F"};
     ListView lst;
 
