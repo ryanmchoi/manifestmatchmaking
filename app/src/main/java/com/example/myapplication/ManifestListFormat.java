@@ -14,15 +14,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class ManifestListFormat extends ArrayAdapter<String> {
 
-    private String[] manifest;
+    private ArrayList<String> manifest;
     private Integer[] imgid;
     private Activity context;
 
-    public ManifestListFormat(Activity context, String[] manifest) {
+    public ManifestListFormat(Activity context, ArrayList<String> manifest) {
         super(context, R.layout.activity_manifest_list_format, manifest);
-
         this.context = context;
         this.manifest = manifest;
     }
@@ -43,7 +44,7 @@ public class ManifestListFormat extends ArrayAdapter<String> {
             viewHolder = (ViewHolder) r.getTag();
         }
 
-        viewHolder.tvw1.setText(manifest[position]);
+        viewHolder.tvw1.setText(manifest.get(position));
 
         return r;
     }

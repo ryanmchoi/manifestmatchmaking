@@ -26,47 +26,44 @@ import java.util.Map;
 
 public class ManifestList extends AppCompatActivity {
     DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Manifests");
-
-    String[] manifest = new String[]{"Manifest A", "Manifest B", "Manifest C", "Manifest D", "Manifest E", "Manifest F"};
     ListView lst;
+    ArrayList<String> manifest = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_manifest_list);
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Manifest> map = (Map<String, Manifest>) dataSnapshot.getValue();
-                List<String> mList = new ArrayList<>();
+                ArrayList<String> mList = new ArrayList<>();
                 for (String key : map.keySet()) {
                     mList.add(key);
+                    manifest.add(key);
                 }
-
+                lst = (ListView) findViewById(R.id.listview);
+                ManifestListFormat customListview = new ManifestListFormat(ManifestList.this, manifest);
+                lst.setAdapter(customListview);
                 Log.d("keys", mList.toString());
-
                 Log.d("Manifest A Details", "" + map.get("A"));
+
+                lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String mview = manifest.get(position).toString();
+                        Intent intent = new Intent(ManifestList.this, ViewManifest.class);
+                        intent.putExtra("Listviewclickvalue", mview.substring(9));
+                        startActivity(intent);
+                    }
+                });
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("Manifest Error Tag", "loadManifest:onCancelled", databaseError.toException());
             }
         });
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manifest_list);
         this.setTitle("Manifests");
-        lst = (ListView) findViewById(R.id.listview);
-        ManifestListFormat customListview = new ManifestListFormat(this, manifest);
-        lst.setAdapter(customListview);
 
-
-        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String mview = manifest[position].toString();
-                Intent intent = new Intent(ManifestList.this, ViewManifest.class);
-                intent.putExtra("Listviewclickvalue", mview);
-                startActivity(intent);
-            }
-        });
 
     }
 
