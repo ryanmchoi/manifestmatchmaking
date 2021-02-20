@@ -2,11 +2,14 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ViewManifest extends AppCompatActivity {
 
@@ -15,39 +18,49 @@ public class ViewManifest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_manifest);
 
-        //bring in all the textViews from the activity_view_manifest xml file
-        TextView manifestName = findViewById(R.id.manifest_label);
-        TextView aircraftName = findViewById(R.id.aircraft_name_label);
-        TextView location = findViewById(R.id.aircraft_location_label);
-        TextView departureTime = findViewById(R.id.departure_time_label);
-        TextView capacity = findViewById(R.id.capacity_label);
-        TextView status = findViewById(R.id.status_label);
+        String manifestClicked = getIntent().getStringExtra("Listviewclickvalue");
 
-        //Replace the existing text of textView with that of the information retrieved from database
-        //Right now, these are dummy values
-        String manifestText = manifestName.getText() + " A";
-        String aircraftText = aircraftName.getText() + " D";
-        String locationText = location.getText() + " Hangar C";
-        String departText = departureTime.getText() + " 14:00";
-        String capacityText = capacity.getText() + " 21";
-        String statusText = status.getText() + " Functioning";
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Manifests");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //get values from database for the manifest that was clicked
+                String aircraftName = dataSnapshot.child(manifestClicked).child("aircraft_name").getValue(String.class);
+                Long departureTime = dataSnapshot.child(manifestClicked).child("departure_time").getValue(Long.class);
+                String location = dataSnapshot.child(manifestClicked).child("location").getValue(String.class);
+                Long maxCapacity = dataSnapshot.child(manifestClicked).child("max_capacity").getValue(Long.class);
+                String status = dataSnapshot.child(manifestClicked).child("status").getValue(String.class);
 
-        //set the text of the textViews
-        manifestName.setText(manifestText);
-        aircraftName.setText(aircraftText);
-        location.setText(locationText);
-        departureTime.setText(departText);
-        capacity.setText(capacityText);
-        status.setText(statusText);
+                //bring in all the textViews from the activity_view_manifest xml file
+                TextView manifestNameTextView = findViewById(R.id.manifest_label);
+                TextView aircraftNameTextView = findViewById(R.id.aircraft_name_label);
+                TextView locationTextView = findViewById(R.id.aircraft_location_label);
+                TextView departureTimeTextView = findViewById(R.id.departure_time_label);
+                TextView capacityTextView = findViewById(R.id.max_capacity_label);
+                TextView statusTextView = findViewById(R.id.status_label);
 
+                //Replace the existing text of textView with that of the information retrieved from database
+                String manifestText = "Manifest " + manifestClicked;
+                String aircraftText = "Aircraft: " + aircraftName;
+                String locationText = "Location: " + location;
+                String departText = "Departure Time: " + departureTime;
+                String capacityText = "Max Capacity: " + maxCapacity;
+                String statusText = "Status: " + status;
 
-        //Gets which manifest was clicked
-        Intent intent = getIntent();
-        String text = intent.getStringExtra("Listviewclickvalue");
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+                //set the text of the textViews
+                manifestNameTextView.setText(manifestText);
+                aircraftNameTextView.setText(aircraftText);
+                locationTextView.setText(locationText);
+                departureTimeTextView.setText(departText);
+                capacityTextView.setText(capacityText);
+                statusTextView.setText(statusText);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("Manifest Error Tag", "loadManifest:onCancelled", databaseError.toException());
+            }
+        });
 
     }
 }

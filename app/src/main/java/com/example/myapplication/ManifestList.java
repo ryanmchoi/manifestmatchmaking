@@ -63,7 +63,9 @@ public class ManifestList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String mview = manifest[position].toString();
                 Intent intent = new Intent(ManifestList.this, ViewManifest.class);
-                intent.putExtra("Listviewclickvalue", mview);
+
+                //send just the manifest name. EX: Manifest A -> A
+                intent.putExtra("Listviewclickvalue", mview.substring(9));
                 startActivity(intent);
             }
         });
