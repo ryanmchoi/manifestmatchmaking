@@ -15,15 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ManifestListFormat extends ArrayAdapter<String> {
+public class RangerListFormat extends ArrayAdapter<String> {
 
-    private ArrayList<String> manifest;
+    private ArrayList<String> ranger;
+    private ArrayList<Integer> imgid;
     private Activity context;
 
-    public ManifestListFormat(Activity context, ArrayList<String> manifest) {
-        super(context, R.layout.activity_manifest_list_format, manifest);
+    public RangerListFormat(Activity context, ArrayList<String> ranger, ArrayList<Integer> imgid) {
+        super(context, R.layout.activity_ranger_list_format, ranger);
         this.context = context;
-        this.manifest = manifest;
+        this.ranger = ranger;
+        this.imgid = imgid;
     }
 
 
@@ -31,18 +33,19 @@ public class ManifestListFormat extends ArrayAdapter<String> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View r = convertView;
-        ViewHolder viewHolder = null;
+        RangerListFormat.ViewHolder viewHolder = null;
         if (r == null)
         {
             LayoutInflater layoutInflater = context.getLayoutInflater();
-            r = layoutInflater.inflate(R.layout.activity_manifest_list_format, null, true);
-            viewHolder = new ViewHolder(r);
+            r = layoutInflater.inflate(R.layout.activity_ranger_list_format, null, true);
+            viewHolder = new RangerListFormat.ViewHolder(r);
             r.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) r.getTag();
+            viewHolder = (RangerListFormat.ViewHolder) r.getTag();
         }
 
-        viewHolder.tvw1.setText(manifest.get(position));
+        viewHolder.ivw.setImageResource(imgid.get(position));
+        viewHolder.tvw1.setText(ranger.get(position));
 
         return r;
     }
@@ -50,9 +53,11 @@ public class ManifestListFormat extends ArrayAdapter<String> {
     class ViewHolder
     {
         TextView tvw1;
+        ImageView ivw;
         ViewHolder(View v)
         {
-            tvw1 = (TextView) v.findViewById(R.id.manifest);
+            tvw1 = (TextView) v.findViewById(R.id.ranger);
+            ivw = (ImageView) v.findViewById(R.id.imageView);
         }
 
     }

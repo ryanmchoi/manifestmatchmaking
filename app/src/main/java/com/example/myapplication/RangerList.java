@@ -13,6 +13,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.models.Manifest;
+import com.example.myapplication.models.Ranger;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,46 +25,48 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class ManifestList extends AppCompatActivity {
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Manifests");
+public class RangerList extends AppCompatActivity {
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Rangers");
     ListView lst;
-    ArrayList<String> manifest = new ArrayList<>();
+    ArrayList<String> ranger = new ArrayList<>();
+    ArrayList<Integer> imgid = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manifest_list);
+        setContentView(R.layout.activity_ranger_list);
+        String manifestClicked = getIntent().getStringExtra("Listviewclickvalue");
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Manifest> map = (Map<String, Manifest>) dataSnapshot.getValue();
+                Map<String, Ranger> map = (Map<String, Ranger>) dataSnapshot.getValue();
                 ArrayList<String> mList = new ArrayList<>();
                 for (String key : map.keySet()) {
                     mList.add(key);
-                    manifest.add(key);
+                    String rangerManifest = dataSnapshot.child(key).child("Manifest").getValue(String.class);
+                    if (rangerManifest.compareTo(manifestClicked) == 0) {
+                        ranger.add(key);
+                        String status = dataSnapshot.child(key).child("Status").getValue(String.class);
+                        if (status.compareTo("Active") == 0) {
+                            imgid.add(R.drawable.green);
+                        } else {
+                            imgid.add(R.drawable.red);
+                        }
+                    }
                 }
                 lst = (ListView) findViewById(R.id.listview);
-                ManifestListFormat customListview = new ManifestListFormat(ManifestList.this, manifest);
+                RangerListFormat customListview = new RangerListFormat(RangerList.this, ranger, imgid);
                 lst.setAdapter(customListview);
                 Log.d("keys", mList.toString());
-                Log.d("Manifest A Details", "" + map.get("A"));
-                String test = dataSnapshot.child("A").child("status").getValue(String.class);
+                Log.d("Ranger A Details", "" + map.get("A"));
+                String test = dataSnapshot.child("A").child("Status").getValue(String.class);
                 Log.d("Status", "" + test);
-
-                lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String mview = manifest.get(position).toString();
-                        Intent intent = new Intent(ManifestList.this, ViewManifest.class);
-                        intent.putExtra("Listviewclickvalue", mview);
-                        startActivity(intent);
-                    }
-                });
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.w("Manifest Error Tag", "loadManifest:onCancelled", databaseError.toException());
+                Log.w("Ranger Error Tag", "loadRanger:onCancelled", databaseError.toException());
             }
         });
-        this.setTitle("Manifests");
+        this.setTitle("Rangers");
     }
 }

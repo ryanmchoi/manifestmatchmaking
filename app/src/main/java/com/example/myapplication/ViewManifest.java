@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import android.content.Intent;
+import android.widget.Button;
 
 public class ViewManifest extends AppCompatActivity {
+
+    private Button viewRangerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,17 @@ public class ViewManifest extends AppCompatActivity {
                 departureTimeTextView.setText(departText);
                 capacityTextView.setText(capacityText);
                 statusTextView.setText(statusText);
+
+                viewRangerBtn = findViewById(R.id.viewPersonnelButton);
+
+                viewRangerBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent viewRangerIntent = new Intent(ViewManifest.this, RangerList.class);
+                        viewRangerIntent.putExtra("Listviewclickvalue", manifestClicked);
+                        startActivity(viewRangerIntent);
+                    }
+                });
 
             }
             @Override
