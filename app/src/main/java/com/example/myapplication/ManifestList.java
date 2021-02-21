@@ -52,7 +52,7 @@ public class ManifestList extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String mview = manifest.get(position).toString();
                         Intent intent = new Intent(ManifestList.this, ViewManifest.class);
-                        intent.putExtra("Listviewclickvalue", mview.substring(9));
+                        intent.putExtra("Listviewclickvalue", mview);
                         startActivity(intent);
                     }
                 });
