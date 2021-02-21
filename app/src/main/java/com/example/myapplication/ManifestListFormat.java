@@ -19,13 +19,14 @@ import java.util.ArrayList;
 public class ManifestListFormat extends ArrayAdapter<String> {
 
     private ArrayList<String> manifest;
-    private Integer[] imgid;
+    private ArrayList<Integer> imgid;
     private Activity context;
 
-    public ManifestListFormat(Activity context, ArrayList<String> manifest) {
+    public ManifestListFormat(Activity context, ArrayList<String> manifest, ArrayList<Integer> imgid) {
         super(context, R.layout.activity_manifest_list_format, manifest);
         this.context = context;
         this.manifest = manifest;
+        this.imgid = imgid;
     }
 
 
@@ -44,6 +45,7 @@ public class ManifestListFormat extends ArrayAdapter<String> {
             viewHolder = (ViewHolder) r.getTag();
         }
 
+        viewHolder.ivw.setImageResource(imgid.get(position));
         viewHolder.tvw1.setText(manifest.get(position));
 
         return r;
@@ -52,9 +54,12 @@ public class ManifestListFormat extends ArrayAdapter<String> {
     class ViewHolder
     {
         TextView tvw1;
+        ImageView ivw;
         ViewHolder(View v)
         {
             tvw1 = (TextView) v.findViewById(R.id.manifest);
+            ivw = (ImageView) v.findViewById(R.id.imageView);
         }
+
     }
 }

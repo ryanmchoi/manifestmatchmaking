@@ -28,6 +28,7 @@ public class ManifestList extends AppCompatActivity {
     DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Manifests");
     ListView lst;
     ArrayList<String> manifest = new ArrayList<>();
+    ArrayList<Integer> imgid = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,19 +41,28 @@ public class ManifestList extends AppCompatActivity {
                 for (String key : map.keySet()) {
                     mList.add(key);
                     manifest.add(key);
+                    String status = dataSnapshot.child(key).child("status").getValue(String.class);
+                    Log.d("test", "" + status);
+                    if (status.compareTo("Active") == 0) {
+                        imgid.add(R.drawable.green);
+                    } else {
+                        imgid.add(R.drawable.red);
+                    }
                 }
                 lst = (ListView) findViewById(R.id.listview);
-                ManifestListFormat customListview = new ManifestListFormat(ManifestList.this, manifest);
+                ManifestListFormat customListview = new ManifestListFormat(ManifestList.this, manifest, imgid);
                 lst.setAdapter(customListview);
                 Log.d("keys", mList.toString());
                 Log.d("Manifest A Details", "" + map.get("A"));
+                String test = dataSnapshot.child("A").child("status").getValue(String.class);
+                Log.d("Status", "" + test);
 
                 lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String mview = manifest.get(position).toString();
                         Intent intent = new Intent(ManifestList.this, ViewManifest.class);
-                        intent.putExtra("Listviewclickvalue", mview.substring(9));
+                        intent.putExtra("Listviewclickvalue", mview);
                         startActivity(intent);
                     }
                 });
@@ -63,8 +73,5 @@ public class ManifestList extends AppCompatActivity {
             }
         });
         this.setTitle("Manifests");
-
-
     }
-
 }
