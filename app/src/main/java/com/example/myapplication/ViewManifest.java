@@ -2,9 +2,11 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,6 +19,8 @@ import android.widget.Button;
 public class ViewManifest extends AppCompatActivity {
 
     private Button viewRangerBtn;
+    Button changeAircraftButton;
+    String aircraftName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,7 @@ public class ViewManifest extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //get values from database for the manifest that was clicked
-                String aircraftName = dataSnapshot.child(manifestClicked).child("aircraft_name").getValue(String.class);
+                aircraftName = dataSnapshot.child(manifestClicked).child("aircraft_name").getValue(String.class);
                 Long departureTime = dataSnapshot.child(manifestClicked).child("departure_time").getValue(Long.class);
                 String location = dataSnapshot.child(manifestClicked).child("location").getValue(String.class);
                 Long maxCapacity = dataSnapshot.child(manifestClicked).child("max_capacity").getValue(Long.class);
@@ -60,21 +64,34 @@ public class ViewManifest extends AppCompatActivity {
                 capacityTextView.setText(capacityText);
                 statusTextView.setText(statusText);
 
-                viewRangerBtn = findViewById(R.id.viewPersonnelButton);
-
-                viewRangerBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent viewRangerIntent = new Intent(ViewManifest.this, RangerList.class);
-                        viewRangerIntent.putExtra("Listviewclickvalue", manifestClicked);
-                        startActivity(viewRangerIntent);
-                    }
-                });
 
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("Manifest Error Tag", "loadManifest:onCancelled", databaseError.toException());
+            }
+        });
+
+        viewRangerBtn = findViewById(R.id.viewPersonnelButton);
+
+        viewRangerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewRangerIntent = new Intent(ViewManifest.this, RangerList.class);
+                viewRangerIntent.putExtra("Listviewclickvalue", manifestClicked);
+                startActivity(viewRangerIntent);
+            }
+        });
+
+        changeAircraftButton = findViewById(R.id.changeAircraftButton);
+        changeAircraftButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent changeAircraftIntent = new Intent(ViewManifest.this, ChangeAircraft.class);
+                changeAircraftIntent.putExtra("Listviewclickvalue", manifestClicked);
+                changeAircraftIntent.putExtra("aircraftName", aircraftName);
+                startActivity(changeAircraftIntent);
             }
         });
 
