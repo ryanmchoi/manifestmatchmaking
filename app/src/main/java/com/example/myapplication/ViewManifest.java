@@ -35,9 +35,9 @@ public class ViewManifest extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //get values from database for the manifest that was clicked
                 aircraftName = dataSnapshot.child(manifestClicked).child("aircraft_name").getValue(String.class);
-                Long departureTime = dataSnapshot.child(manifestClicked).child("departure_time").getValue(Long.class);
+                Integer departureTime = dataSnapshot.child(manifestClicked).child("departure_time").getValue(Integer.class);
                 String location = dataSnapshot.child(manifestClicked).child("location").getValue(String.class);
-                Long maxCapacity = dataSnapshot.child(manifestClicked).child("max_capacity").getValue(Long.class);
+                Integer maxCapacity = dataSnapshot.child(manifestClicked).child("max_capacity").getValue(Integer.class);
                 String status = dataSnapshot.child(manifestClicked).child("status").getValue(String.class);
 
                 //bring in all the textViews from the activity_view_manifest xml file

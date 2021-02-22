@@ -53,13 +53,13 @@ public class ChangeAircraft extends AppCompatActivity {
 
                     mDatabase.child(manifestClicked).child("aircraft_name").setValue(aircraftNameInput);
                     if(!isEmpty(aircraftDeparture)) {
-                        mDatabase.child(manifestClicked).child("departure_time").setValue(Long.parseLong(aircraftDepartureInput));
+                        mDatabase.child(manifestClicked).child("departure_time").setValue(Integer.parseInt(aircraftDepartureInput));
                     }
                     if(!isEmpty(aircraftLocation)) {
                         mDatabase.child(manifestClicked).child("location").setValue(aircraftLocationInput);
                     }
                     if(!isEmpty(aircraftMaxCapacity)) {
-                        mDatabase.child(manifestClicked).child("max_capacity").setValue(Long.parseLong(aircraftMaxCapacityInput));
+                        mDatabase.child(manifestClicked).child("max_capacity").setValue(Integer.parseInt(aircraftMaxCapacityInput));
                     }
                     if(!isEmpty(aircraftStatus)) {
                         mDatabase.child(manifestClicked).child("status").setValue(aircraftStatusInput);
