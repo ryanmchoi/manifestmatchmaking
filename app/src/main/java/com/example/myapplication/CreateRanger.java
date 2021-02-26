@@ -75,7 +75,7 @@ public class CreateRanger extends AppCompatActivity {
 
 
                     Ranger newRanger= new Ranger(manifest_name, ranger_name, _status, _unit);
-                    if (!ranger_names.contains(ranger_name)) {
+                    //if (!ranger_names.contains(ranger_name)) {
                         //create new record in database
                         rDatabase.child(ranger_name).setValue(newRanger);
                         //manifest successfully added
@@ -84,11 +84,11 @@ public class CreateRanger extends AppCompatActivity {
 
                         Intent viewRangerIntent = new Intent(CreateRanger.this, RangerList.class);
                         startActivity(viewRangerIntent);
-                    } else {
+                    //} else {
                         //Could not add new manifest
-                        Toast fail = Toast.makeText(getApplicationContext(), "There is already a ranger with this name", Toast.LENGTH_LONG);
-                        fail.show();
-                    }
+                        //Toast fail = Toast.makeText(getApplicationContext(), "There is already a ranger with this name", Toast.LENGTH_LONG);
+                        //fail.show();
+                    //}
 
                     Intent viewManifestIntent = new Intent(CreateRanger.this, ViewManifest.class);
                     viewManifestIntent.putExtra("Listviewclickvalue", manifestClicked);
