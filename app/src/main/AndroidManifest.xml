@@ -21,6 +21,9 @@
         <activity
             android:name=".CreateManifest"
             android:label="Create Manifest" />
+        <activity
+            android:name=".CreateRanger"
+            android:label="Create Ranger" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

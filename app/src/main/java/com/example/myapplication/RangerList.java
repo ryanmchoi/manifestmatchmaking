@@ -43,10 +43,10 @@ public class RangerList extends AppCompatActivity {
                 ArrayList<String> mList = new ArrayList<>();
                 for (String key : map.keySet()) {
                     mList.add(key);
-                    String rangerManifest = dataSnapshot.child(key).child("Manifest").getValue(String.class);
+                    String rangerManifest = dataSnapshot.child(key).child("manifest").getValue(String.class);
                     if (rangerManifest.compareTo(manifestClicked) == 0) {
                         ranger.add(key);
-                        String status = dataSnapshot.child(key).child("Status").getValue(String.class);
+                        String status = dataSnapshot.child(key).child("status").getValue(String.class);
                         if (status.compareTo("Active") == 0) {
                             imgid.add(R.drawable.green);
                         } else {
@@ -59,7 +59,7 @@ public class RangerList extends AppCompatActivity {
                 lst.setAdapter(customListview);
                 Log.d("keys", mList.toString());
                 Log.d("Ranger A Details", "" + map.get("A"));
-                String test = dataSnapshot.child("A").child("Status").getValue(String.class);
+                String test = dataSnapshot.child("A").child("status").getValue(String.class);
                 Log.d("Status", "" + test);
             }
             @Override

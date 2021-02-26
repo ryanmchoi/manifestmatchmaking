@@ -13,13 +13,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import android.content.Intent;
-import android.widget.Button;
 
 public class ViewManifest extends AppCompatActivity {
 
     private Button viewRangerBtn;
     Button changeAircraftButton;
+    Button addRangerButton;
     String aircraftName;
 
     @Override
@@ -95,5 +94,14 @@ public class ViewManifest extends AppCompatActivity {
             }
         });
 
+        addRangerButton = findViewById(R.id.addRangerButton);
+        addRangerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent createRangerIntent = new Intent(ViewManifest.this, CreateRanger.class);
+                createRangerIntent.putExtra("Listviewclickvalue", manifestClicked);
+                startActivity(createRangerIntent);
+            }
+        });
     }
 }
