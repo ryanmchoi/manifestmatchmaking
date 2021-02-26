@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,9 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.models.Manifest;
 import com.google.firebase.database.DataSnapshot;
@@ -20,8 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 public class ManifestList extends AppCompatActivity {
@@ -41,7 +36,7 @@ public class ManifestList extends AppCompatActivity {
                     mList.add(key);
                     manifest.add(key);
                 }
-                lst = (ListView) findViewById(R.id.listview);
+                lst = (ListView) findViewById(R.id.listview2);
                 ManifestListFormat customListview = new ManifestListFormat(ManifestList.this, manifest);
                 lst.setAdapter(customListview);
                 Log.d("keys", mList.toString());

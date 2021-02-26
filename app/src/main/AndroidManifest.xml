@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".RemoveRangerList"></activity>
+        <activity android:name=".ViewRanger" />
         <activity android:name=".RangerList" />
         <activity
             android:name=".ChangeAircraft"
-            android:label="Change Aircraft Details">
-        </activity>
+            android:label="Change Aircraft Details" />
         <activity android:name=".ManifestList" />
         <activity
             android:name=".ViewManifest"

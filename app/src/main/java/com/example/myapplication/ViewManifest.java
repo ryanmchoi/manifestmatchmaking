@@ -103,5 +103,15 @@ public class ViewManifest extends AppCompatActivity {
                 startActivity(createRangerIntent);
             }
         });
+
+        addRangerButton = findViewById(R.id.removeRangerButton);
+        addRangerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent createRangerIntent = new Intent(ViewManifest.this, RemoveRangerList.class);
+                createRangerIntent.putExtra("Listviewclickvalue", manifestClicked);
+                startActivity(createRangerIntent);
+            }
+        });
     }
 }

@@ -8,7 +8,7 @@
 
 
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/listview2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="46dp"

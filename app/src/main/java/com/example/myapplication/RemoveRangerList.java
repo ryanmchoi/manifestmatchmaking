@@ -19,16 +19,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class RangerList extends AppCompatActivity {
+public class RemoveRangerList extends AppCompatActivity {
+
     DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Rangers");
     ListView lst;
     ArrayList<String> ranger = new ArrayList<>();
-    ArrayList<Integer> imgid = new ArrayList<>();
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ranger_list);
-        String manifestClicked = getIntent().getStringExtra("Listviewclickvalue");
+        setContentView(R.layout.activity_remove_ranger_list);
+
+        String currManifest = getIntent().getStringExtra("Listviewclickvalue");
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -38,31 +40,20 @@ public class RangerList extends AppCompatActivity {
                 for (String key : map.keySet()) {
                     mList.add(key);
                     String rangerManifest = dataSnapshot.child(key).child("manifest").getValue(String.class);
-                    if (rangerManifest.compareTo(manifestClicked) == 0) {
+                    if (rangerManifest.compareTo(currManifest) == 0) {
                         ranger.add(key);
-                        String status = dataSnapshot.child(key).child("status").getValue(String.class);
-                        if (status.compareTo("Active") == 0) {
-                            imgid.add(R.drawable.green);
-                        } else {
-                            imgid.add(R.drawable.red);
-                        }
                     }
                 }
-                lst = (ListView) findViewById(R.id.listview2);
-                RangerListFormat customListview = new RangerListFormat(RangerList.this, ranger, imgid);
-                lst.setAdapter(customListview);
-                Log.d("keys", mList.toString());
-                Log.d("Ranger A Details", "" + map.get("A"));
-                String test = dataSnapshot.child("A").child("status").getValue(String.class);
-                Log.d("Status", "" + test);
 
+                lst = (ListView) findViewById(R.id.listview2);
+                ManifestListFormat customListview = new ManifestListFormat(RemoveRangerList.this, ranger);
+                lst.setAdapter(customListview);
                 lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String rview = ranger.get(position).toString();
-                        Intent intent = new Intent(RangerList.this, ViewRanger.class);
-                        intent.putExtra("Listviewclickvalue", rview);
-                        startActivity(intent);
+                        mDatabase.child(rview).child("manifest").setValue("None");
+                        ranger.clear();
                     }
                 });
 
@@ -72,6 +63,6 @@ public class RangerList extends AppCompatActivity {
                 Log.w("Ranger Error Tag", "loadRanger:onCancelled", databaseError.toException());
             }
         });
-        this.setTitle("Rangers");
+
     }
 }
