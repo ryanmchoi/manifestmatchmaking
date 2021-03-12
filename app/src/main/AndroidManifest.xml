@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".RemoveRangerList"></activity>
+
+        <activity android:name=".RemoveRangerList" />
         <activity android:name=".ViewRanger" />
         <activity android:name=".RangerList" />
         <activity
@@ -25,7 +26,10 @@
         <activity
             android:name=".CreateRanger"
             android:label="Create Ranger" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="Manifest Matchmaking" />
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
