@@ -1,23 +1,22 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
-public class RangerListFormat extends ArrayAdapter<String> {
+public class RangerListFormat extends ArrayAdapter<String> implements Filterable {
 
     private ArrayList<String> ranger;
+    private ArrayList<String> orig;
     private ArrayList<Integer> imgid;
     private Activity context;
 
@@ -28,6 +27,55 @@ public class RangerListFormat extends ArrayAdapter<String> {
         this.imgid = imgid;
     }
 
+    public Filter getFilter() {
+        return new Filter() {
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults oReturn = new FilterResults();
+                final ArrayList<String> results = new ArrayList<String>();
+                if (orig == null)
+                    orig = ranger;
+                if (constraint != null) {
+                    if (orig != null && orig.size() > 0) {
+                        for (String g : orig) {
+                            if (g.contains(constraint.toString()))
+                                results.add(g);
+                        }
+                    }
+                    oReturn.values = results;
+                }
+                return oReturn;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint,
+                                          FilterResults results) {
+                ranger = (ArrayList<String>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount() {
+        return ranger.size();
+    }
+
+    @Override
+    public String getItem(int position) {
+        return ranger.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
     @NonNull
     @Override

@@ -4,10 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.myapplication.models.Ranger;
 import com.google.firebase.database.DataSnapshot;
@@ -19,9 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class RangerList extends AppCompatActivity {
+public class RangerList extends AppCompatActivity implements SearchView.OnQueryTextListener {
     DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Rangers");
     ListView lst;
+    SearchView searchView;
     ArrayList<String> ranger = new ArrayList<>();
     ArrayList<Integer> imgid = new ArrayList<>();
 
@@ -29,6 +36,7 @@ public class RangerList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranger_list);
         String manifestClicked = getIntent().getStringExtra("Listviewclickvalue");
+        searchView = findViewById(R.id.searchView1);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -49,6 +57,7 @@ public class RangerList extends AppCompatActivity {
                     }
                 }
                 lst = (ListView) findViewById(R.id.listview2);
+
                 RangerListFormat customListview = new RangerListFormat(RangerList.this, ranger, imgid);
                 lst.setAdapter(customListview);
                 Log.d("keys", mList.toString());
@@ -59,19 +68,40 @@ public class RangerList extends AppCompatActivity {
                 lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String rview = ranger.get(position).toString();
+                        String rview = customListview.getItem(position).toString();
                         Intent intent = new Intent(RangerList.this, ViewRanger.class);
                         intent.putExtra("Listviewclickvalue", rview);
                         startActivity(intent);
                     }
                 });
 
+                lst.setTextFilterEnabled(true);
             }
+
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("Ranger Error Tag", "loadRanger:onCancelled", databaseError.toException());
             }
         });
+
+        searchView.setOnQueryTextListener(this);
         this.setTitle("Rangers");
+    }
+
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (TextUtils.isEmpty(newText)) {
+            lst.clearTextFilter();
+        } else {
+            lst.setFilterText(newText);
+        }
+        return true;
     }
 }
