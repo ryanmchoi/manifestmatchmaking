@@ -21,6 +21,12 @@
             android:name=".ViewManifest"
             android:label="View Manifest" />
         <activity
+            android:name=".ViewRangerSelf"
+            android:label="View Ranger Self " />
+        <activity
+            android:name=".ViewAircraftDetails"
+            android:label="View Aircraft Details " />
+        <activity
             android:name=".CreateManifest"
             android:label="Create Manifest" />
         <activity

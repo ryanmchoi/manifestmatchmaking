@@ -43,13 +43,15 @@ public class Login extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String password = dataSnapshot.child(Username.getText().toString()).child("password").getValue(String.class);
                         Integer isDaco = dataSnapshot.child(Username.getText().toString()).child("isDaco").getValue(Integer.class);
+                        String rangerName = dataSnapshot.child(Username.getText().toString()).child("Ranger").getValue(String.class);
 
                         if (password.equals(Password.getText().toString())) {
                             if (isDaco == 1) {
                                 Intent loginIntent = new Intent(Login.this, MainActivity.class);
                                 startActivity(loginIntent);
                             } else {
-                                Intent loginIntent = new Intent(Login.this, MainActivity.class);
+                                Intent loginIntent = new Intent(Login.this, ViewRangerSelf.class);
+                                loginIntent.putExtra("rangerName", rangerName);
                                 startActivity(loginIntent);
                             }
                         }

@@ -19,6 +19,7 @@ public class ViewManifest extends AppCompatActivity {
     private Button viewRangerBtn;
     Button changeAircraftButton;
     Button addRangerButton;
+    Button removeRangerButton;
     String aircraftName;
 
     @Override
@@ -104,8 +105,8 @@ public class ViewManifest extends AppCompatActivity {
             }
         });
 
-        addRangerButton = findViewById(R.id.removeRangerButton);
-        addRangerButton.setOnClickListener(new View.OnClickListener() {
+        removeRangerButton = findViewById(R.id.removeRangerButton);
+        removeRangerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent createRangerIntent = new Intent(ViewManifest.this, RemoveRangerList.class);
