@@ -88,9 +88,7 @@ public class ViewManifest extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent changeAircraftIntent = new Intent(ViewManifest.this, ChangeAircraft.class);
-                changeAircraftIntent.putExtra("Listviewclickvalue", manifestClicked);
-                changeAircraftIntent.putExtra("aircraftName", aircraftName);
+                Intent changeAircraftIntent = new Intent(ViewManifest.this, AircraftList.class);
                 startActivity(changeAircraftIntent);
             }
         });
