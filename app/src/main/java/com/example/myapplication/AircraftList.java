@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.myapplication.models.Aircraft;
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.view.Change;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -29,6 +31,9 @@ public class AircraftList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aircraft_list);
+
+        String manifestClicked = getIntent().getStringExtra("Listviewclickvalue");
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -51,6 +56,18 @@ public class AircraftList extends AppCompatActivity {
                 Log.d("Aircraft C Details", "" + map.get("C"));
                 String test = dataSnapshot.child("C").child("status").getValue(String.class);
                 Log.d("Status", "" + test);
+
+                lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String mview = aircraft.get(position).toString();
+                        Intent intent = new Intent(AircraftList.this, ChangeAircraft.class);
+                        intent.putExtra("AircraftClicked", mview);
+                        intent.putExtra("ManifestClicked", manifestClicked);
+                        startActivity(intent);
+                    }
+                });
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
