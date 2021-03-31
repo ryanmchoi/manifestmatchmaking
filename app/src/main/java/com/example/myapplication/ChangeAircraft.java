@@ -45,6 +45,7 @@ public class ChangeAircraft extends AppCompatActivity {
         cancelBtn = findViewById(R.id.cancelButton);
 
         DatabaseReference aDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Aircrafts");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Manifests");
 
         //populate all the fields from database
         aircraftName.setText("Aircraft: " + aircraftClicked);
@@ -80,7 +81,10 @@ public class ChangeAircraft extends AppCompatActivity {
                         if (aircraftAssigned.equals("n/a")) {
                             //update the value in the aircrafts table
                             aDatabase.child(aircraftClicked).child("manifest_name").setValue(manifestClicked);
-                            Intent intent = new Intent(ChangeAircraft.this, ManifestList.class);
+                            //update the value in the manifests table
+                            mDatabase.child(manifestClicked).child("aircraft_name").setValue(aircraftClicked);
+                            Intent intent = new Intent(ChangeAircraft.this, ViewManifest.class);
+                            intent.putExtra("Listviewclickvalue", manifestClicked);
                             startActivity(intent);
                         } else {
                             Toast fail = Toast.makeText(getApplicationContext(), "This aircraft is already assigned to a manifest", Toast.LENGTH_LONG);

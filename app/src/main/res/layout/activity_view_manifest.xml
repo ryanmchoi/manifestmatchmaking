@@ -111,19 +111,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/status_label"
-        app:layout_constraintVertical_bias="0.469" />
-
-    <Button
-        android:id="@+id/removeRangerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:text="Remove Ranger"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeAircraftButton"
-        app:layout_constraintVertical_bias="0.192" />
+        app:layout_constraintVertical_bias="0.545" />
 
     <Button
         android:id="@+id/changeAircraftButton"
@@ -136,7 +124,7 @@
         app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toEndOf="@+id/viewPersonnelButton"
         app:layout_constraintTop_toBottomOf="@+id/status_label"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintVertical_bias="0.545" />
 
     <Button
         android:id="@+id/addRangerButton"
@@ -150,7 +138,19 @@
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPersonnelButton"
-        app:layout_constraintVertical_bias="0.192" />
+        app:layout_constraintVertical_bias="0.237" />
+
+    <Button
+        android:id="@+id/removeRangerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:text="Remove Ranger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeAircraftButton"
+        app:layout_constraintVertical_bias="0.237" />
 
     <TextView
         android:id="@+id/manifest_label"
@@ -170,5 +170,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.032" />
+
+    <Button
+        android:id="@+id/viewAircraftDetailsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aircraft Details"
+        app:layout_constraintBottom_toTopOf="@+id/changeAircraftButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

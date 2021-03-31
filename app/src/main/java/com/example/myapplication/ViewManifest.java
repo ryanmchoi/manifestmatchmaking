@@ -19,6 +19,7 @@ public class ViewManifest extends AppCompatActivity {
     private Button viewRangerBtn;
     Button changeAircraftButton;
     Button addRangerButton;
+    Button viewAircraftDetailsButton;
     Button removeRangerButton;
     String aircraftName;
 
@@ -111,6 +112,16 @@ public class ViewManifest extends AppCompatActivity {
                 Intent createRangerIntent = new Intent(ViewManifest.this, RemoveRangerList.class);
                 createRangerIntent.putExtra("Listviewclickvalue", manifestClicked);
                 startActivity(createRangerIntent);
+            }
+        });
+
+        viewAircraftDetailsButton = findViewById(R.id.viewAircraftDetailsButton);
+        viewAircraftDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent aircraftDetailsIntent = new Intent(ViewManifest.this, DacoViewAircraftDetails.class);
+                aircraftDetailsIntent.putExtra("Listviewclickvalue", manifestClicked);
+                startActivity(aircraftDetailsIntent);
             }
         });
     }

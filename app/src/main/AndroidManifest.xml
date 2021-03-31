@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".AircraftList"></activity>
+        <activity android:name=".DacoViewAircraftDetails"></activity>
+        <activity android:name=".AircraftList" />
         <activity android:name=".RemoveRangerList" />
         <activity android:name=".ViewRanger" />
         <activity android:name=".RangerList" />
