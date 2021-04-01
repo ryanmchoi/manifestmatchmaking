@@ -20,85 +20,10 @@
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/manifest_label"
-        app:layout_constraintVertical_bias="0.062" />
-
-    <TextView
-        android:id="@+id/departure_time_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Departure Time:"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aircraft_name_label"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/aircraft_location_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Location:"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.013"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/departure_time_label"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/max_capacity_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Max Capacity:"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.017"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aircraft_location_label"
-        app:layout_constraintVertical_bias="0.048" />
-
-    <TextView
-        android:id="@+id/status_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Status:"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/max_capacity_label"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.241" />
 
     <Button
         android:id="@+id/viewPersonnelButton"
@@ -110,7 +35,7 @@
         android:text="View Personnel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status_label"
+        app:layout_constraintTop_toBottomOf="@+id/aircraft_name_label"
         app:layout_constraintVertical_bias="0.545" />
 
     <Button
@@ -123,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toEndOf="@+id/viewPersonnelButton"
-        app:layout_constraintTop_toBottomOf="@+id/status_label"
+        app:layout_constraintTop_toBottomOf="@+id/aircraft_name_label"
         app:layout_constraintVertical_bias="0.545" />
 
     <Button
