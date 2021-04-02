@@ -25,10 +25,6 @@ public class CreateManifest extends AppCompatActivity {
 
     EditText manifestName;
     EditText aircraftName;
-    EditText departure;
-    EditText aircraftLocation;
-    EditText maxCapacity;
-    EditText aircraftStatus;
     Button create;
 
     @Override
@@ -39,11 +35,7 @@ public class CreateManifest extends AppCompatActivity {
 
         manifestName = findViewById(R.id.manifestName);
         aircraftName = findViewById(R.id.aircraftName);
-        departure = findViewById(R.id.departure);
-        aircraftLocation = findViewById(R.id.location);
         create = findViewById(R.id.create);
-        maxCapacity = findViewById(R.id.maxCapacity);
-        aircraftStatus = findViewById(R.id.status);
 
         ArrayList<String> manifest_names = new ArrayList<>();
 
@@ -72,14 +64,9 @@ public class CreateManifest extends AppCompatActivity {
 
                     //get values that were inputted by user
                     String aircraft_name = aircraftName.getText().toString();
-                    int departure_time = Integer.parseInt(departure.getText().toString());
                     String id = manifestName.getText().toString();
-                    String location = aircraftLocation.getText().toString();
-                    int max_capacity = Integer.parseInt(maxCapacity.getText().toString());
-                    String status = aircraftStatus.getText().toString();
 
-
-                    Manifest newManifest = new Manifest(aircraft_name, departure_time, id, location, max_capacity, status);
+                    Manifest newManifest = new Manifest(aircraft_name, id);
                     if (!manifest_names.contains(id)) {
                         //create new record in database
                         mDatabase.child(id).setValue(newManifest);

@@ -23,13 +23,14 @@ public class ViewAircraftDetails extends AppCompatActivity {
         String manifestClicked = getIntent().getStringExtra("Listviewclickvalue");
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Manifests");
+        DatabaseReference aDatabase = FirebaseDatabase.getInstance("https://manifest-matchmaking-default-rtdb.firebaseio.com/").getReference("Aircrafts");
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //get values from database for the manifest that was clicked
                 aircraftName = dataSnapshot.child(manifestClicked).child("aircraft_name").getValue(String.class);
-                Integer departureTime = dataSnapshot.child(manifestClicked).child("departure_time").getValue(Integer.class);
-                String location = dataSnapshot.child(manifestClicked).child("location").getValue(String.class);
+                Integer departureTime = dataSnapshot.child(aircraftName).child("departure_time").getValue(Integer.class);
+                String location = dataSnapshot.child(aircraftName).child("location").getValue(String.class);
 
                 //bring in all the textViews from the activity_view_manifest xml file
                 TextView aircraftNameTextView = findViewById(R.id.aircraft_label);
