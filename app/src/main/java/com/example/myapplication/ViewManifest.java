@@ -73,6 +73,7 @@ public class ViewManifest extends AppCompatActivity {
             public void onClick(View view) {
                 Intent changeAircraftIntent = new Intent(ViewManifest.this, AircraftList.class);
                 changeAircraftIntent.putExtra("Listviewclickvalue", manifestClicked);
+                changeAircraftIntent.putExtra("OldAircraft", aircraftName);
                 startActivity(changeAircraftIntent);
             }
         });

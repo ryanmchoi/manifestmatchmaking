@@ -33,6 +33,7 @@ public class AircraftList extends AppCompatActivity {
         setContentView(R.layout.activity_aircraft_list);
 
         String manifestClicked = getIntent().getStringExtra("Listviewclickvalue");
+        String oldAircraft = getIntent().getStringExtra("OldAircraft");
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -64,6 +65,7 @@ public class AircraftList extends AppCompatActivity {
                         Intent intent = new Intent(AircraftList.this, ChangeAircraft.class);
                         intent.putExtra("AircraftClicked", mview);
                         intent.putExtra("ManifestClicked", manifestClicked);
+                        intent.putExtra("OldAircraft", oldAircraft);
                         startActivity(intent);
                     }
                 });

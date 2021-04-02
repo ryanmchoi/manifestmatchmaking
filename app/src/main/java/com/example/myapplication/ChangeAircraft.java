@@ -35,6 +35,7 @@ public class ChangeAircraft extends AppCompatActivity {
 
         String aircraftClicked = getIntent().getStringExtra("AircraftClicked");
         String manifestClicked = getIntent().getStringExtra("ManifestClicked");
+        String oldAircraft = getIntent().getStringExtra("OldAircraft");
 
         aircraftName = findViewById(R.id.aircraft_name);
         aircraftDeparture = findViewById(R.id.departureTimeLabel);
@@ -83,6 +84,8 @@ public class ChangeAircraft extends AppCompatActivity {
                             aDatabase.child(aircraftClicked).child("manifest_name").setValue(manifestClicked);
                             //update the value in the manifests table
                             mDatabase.child(manifestClicked).child("aircraft_name").setValue(aircraftClicked);
+                            //make sure the old aircraft goes to n/a for manifest name
+                            aDatabase.child(oldAircraft).child("manifest_name").setValue("n/a");
                             Intent intent = new Intent(ChangeAircraft.this, ViewManifest.class);
                             intent.putExtra("Listviewclickvalue", manifestClicked);
                             startActivity(intent);
