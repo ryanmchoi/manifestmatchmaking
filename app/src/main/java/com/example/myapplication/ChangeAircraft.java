@@ -85,7 +85,7 @@ public class ChangeAircraft extends AppCompatActivity {
                             //update the value in the manifests table
                             mDatabase.child(manifestClicked).child("aircraft_name").setValue(aircraftClicked);
                             //make sure the old aircraft goes to n/a for manifest name
-//                            aDatabase.child(oldAircraft).child("manifest_name").setValue("n/a");
+                            aDatabase.child(oldAircraft).child("manifest_name").setValue("n/a");
                             Intent intent = new Intent(ChangeAircraft.this, ViewManifest.class);
                             intent.putExtra("Listviewclickvalue", manifestClicked);
                             startActivity(intent);
