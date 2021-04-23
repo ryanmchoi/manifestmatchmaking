@@ -1,16 +1,16 @@
 # Manifest Matchmaking
-Manifest Matchmaking for GT Junior Design (JIE Team 0348)
-Ryan Choi
-Shiv Patel
-Zhi Wei Chen
-Krishna Sardana
+Manifest Matchmaking for GT Junior Design (JIE Team 0348)  
+Ryan Choi  
+Shiv Patel  
+Zhi Wei Chen  
+Krishna Sardana  
 
 ## Release Notes version Manifest Matchmaking 5.0 
 
 ### NEW FEATURES: 
-*Added ability for rangers to receive notifications when their mission details are changed. 
-*Back buttons on various screens. 
-*Password is now hidden when entered into the login page. 
+- Added ability for rangers to receive notifications when their mission details are changed. 
+- Back buttons on various screens. 
+- Password is now hidden when entered into the login page. 
 
 ### BUG FIXES: 
 Create manifest now properly links to an aircraft. 
@@ -28,9 +28,9 @@ None
 
 ### PRE-REQUISITES:  
 
-JDK 1.8 or higher 
+- JDK 1.8 or higher 
 
-### Android Studio 
+- Android Studio 
 
 ### DEPENDENCIES: 
 
@@ -47,11 +47,11 @@ Make sure all import errors are taken care of in Android Studio.
 
 ### INSTALLATION:
 
-1.Download the repository to your local machine. 
+1. Download the repository to your local machine. 
 
-2.Open the project in Android Studio. 
+2. Open the project in Android Studio. 
 
-3.Make sure you have a valid Android device connected to the emulator. 
+3. Make sure you have a valid Android device connected to the emulator. 
 
 ### RUNNING APPLICATION: 
 
