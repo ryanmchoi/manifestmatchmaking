@@ -1,23 +1,22 @@
 # Manifest Matchmaking
 Manifest Matchmaking for GT Junior Design (JIE Team 0348)
+Ryan Choi
+Shiv Patel
+Zhi Wei Chen
+Krishna Sardana
 
 ## Release Notes version Manifest Matchmaking 5.0 
 
 ### NEW FEATURES: 
-
-	Added ability for rangers to receive notifications when their mission details are changed. 
-
-	Back buttons on various screens. 
-
-	Password is now hidden when entered into the login page. 
+*Added ability for rangers to receive notifications when their mission details are changed. 
+*Back buttons on various screens. 
+*Password is now hidden when entered into the login page. 
 
 ### BUG FIXES: 
-
-	Create manifest now properly links to an aircraft. 
+Create manifest now properly links to an aircraft. 
 
 ### KNOWN BUGS: 
-
-	None 
+None
 
  
 
