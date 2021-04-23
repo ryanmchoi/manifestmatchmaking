@@ -1,9 +1,9 @@
-# manifestmatchmaking
+# Manifest Matchmaking
 Manifest Matchmaking for GT Junior Design (JIE Team 0348)
 
-Release Notes version Manifest Matchmaking 1.0 
+## Release Notes version Manifest Matchmaking 5.0 
 
-NEW FEATURES: 
+### NEW FEATURES: 
 
 	Added ability for rangers to receive notifications when their mission details are changed. 
 
@@ -11,11 +11,11 @@ NEW FEATURES:
 
 	Password is now hidden when entered into the login page. 
 
-BUG FIXES: 
+### BUG FIXES: 
 
 	Create manifest now properly links to an aircraft. 
 
-KNOWN BUGS: 
+### KNOWN BUGS: 
 
 	None 
 
@@ -25,41 +25,40 @@ KNOWN BUGS:
 
  
 
-Install Guide Manifest Matchmaking 1.0 
+## Install Guide Manifest Matchmaking 1.0 
 
-Pre-requisites:  
+### PRE-REQUISITES:  
 
 JDK 1.8 or higher 
 
-Android Studio 
+### Android Studio 
 
-Dependencies: 
+### DEPENDENCIES: 
 
 None 
 
-Download: 
+### DOWNLOAD:
 
 Download the source code from the repository. 
+[https://github.com/ryanmchoi/manifestmatchmaking/archive/refs/heads/project.zip ](url)
 
-https://github.com/ryanmchoi/manifestmatchmaking/archive/refs/heads/project.zip 
-
-Build: 
+### BUILD: 
 
 Make sure all import errors are taken care of in Android Studio. 
 
-Installation: 
+### INSTALLATION:
 
-Download the repository to your local machine. 
+1.Download the repository to your local machine. 
 
-Open the project in Android Studio. 
+2.Open the project in Android Studio. 
 
-Make sure you have a valid Android device connected to the emulator. 
+3.Make sure you have a valid Android device connected to the emulator. 
 
-Running application: 
+### RUNNING APPLICATION: 
 
 Run the emulator inside Android Studio. 
 
-Troubleshooting: 
+### TROUBLESHOOTING: 
 
 The application may not run if there are import errors within the files. If the application does not run, check the log for errors. 
 
