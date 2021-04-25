@@ -1,11 +1,13 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +34,10 @@ public class CreateManifest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("Create Manifest");
         setContentView(R.layout.activity_create_manifest2);
+
+        //back button
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         manifestName = findViewById(R.id.manifestName);
         aircraftName = findViewById(R.id.aircraftName);
@@ -100,5 +106,19 @@ public class CreateManifest extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        // Handle item selection
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.models.Ranger;
@@ -33,6 +35,10 @@ public class CreateRanger extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("Create Ranger");
         setContentView(R.layout.activity_create_ranger);
+
+        //back button
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         manifestName = findViewById(R.id.manName);
         rangerName = findViewById(R.id.rangerName);
@@ -96,6 +102,20 @@ public class CreateRanger extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        // Handle item selection
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     boolean isEmpty(EditText text) {
